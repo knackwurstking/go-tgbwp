@@ -102,7 +102,7 @@ func main() {
 	// plugin manager - load *.so files (plugins) get plugin struct (type Plugins)...
 	pm := plugins.NewManager(PluginsPath)
 
-	slog.Info("Plugins path: \"%s\"", pm.Path)
+	slog.Info(fmt.Sprintf("Plugins path: \"%s\"", pm.Path))
 
 	for _, p := range pm.List() {
 		slog.Info(fmt.Sprintf("Load plugin: \"%s\"", p))
