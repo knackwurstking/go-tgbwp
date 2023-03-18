@@ -1,0 +1,13 @@
+[Unit]
+Description=Telegram bot with (golang) plugins.
+After=network.target
+
+[Service]
+Environment=DEBUG=true
+Environment=TGBWP_TOKEN=
+Environment=TGBWP_CHAT_ID=
+Environment=TGBWP_USER_ID=
+ExecStart=tgbwp
+
+[Install]
+WantedBy=default.target

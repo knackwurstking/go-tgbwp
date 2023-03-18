@@ -1,0 +1,4 @@
+github.com/PaulSonOfLars/gotgbot/v2 v2.0.0-rc.12 h1:hBYLRp2x1sxkFCyFKODrcDHTo688m7Ao0dBe5YWCIDA=
+github.com/PaulSonOfLars/gotgbot/v2 v2.0.0-rc.12/go.mod h1:r815fYWTudnU9JhtsJAxUtuV7QrSgKpChJkfTSMFpfg=
+golang.org/x/exp v0.0.0-20230315142452-642cacee5cc0 h1:pVgRXcIictcr+lBQIFeiwuwtDIs4eL21OuM9nyAADmo=
+golang.org/x/exp v0.0.0-20230315142452-642cacee5cc0/go.mod h1:CxIveKay+FTh1D0yPZemJVgC/95VzuuOLq5Qi4xnoYc=
