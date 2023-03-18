@@ -5,6 +5,7 @@ After=network.target
 [Service]
 # Comment this out to hide debug logs.
 Environment=DEBUG=true
+Environment=TGBWP_TOKEN=
 ExecStart=tgbwp
 
 [Install]
