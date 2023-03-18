@@ -6,7 +6,7 @@ After=network.target
 # Comment this out to hide debug logs.
 Environment=DEBUG=true
 Environment=TGBWP_TOKEN=
-ExecStart=tgbwp
+ExecStart=%h/.local/bin/tgbwp
 
 [Install]
 WantedBy=default.target
