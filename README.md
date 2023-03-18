@@ -21,6 +21,7 @@ Now we need to do some stuff so that the bot only answer the group members
 - get and store the _**chat id**_ from the curl command
 
 - env: `export TGBWP_TOKEN=<token>`
+- enable debug: `export DEBUG=true`
 
 - build with: `go build -buildmode=plugin -o ~/.local/share/tgbwp/plugins/ip.so ./plugins/ip`
 
