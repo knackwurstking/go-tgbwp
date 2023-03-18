@@ -3,10 +3,8 @@ Description=Telegram bot with (golang) plugins.
 After=network.target
 
 [Service]
+# Comment this out to hide debug logs.
 Environment=DEBUG=true
-Environment=TGBWP_TOKEN=
-Environment=TGBWP_CHAT_ID=
-Environment=TGBWP_USER_ID=
 ExecStart=tgbwp
 
 [Install]
