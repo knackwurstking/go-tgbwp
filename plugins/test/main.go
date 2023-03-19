@@ -7,9 +7,7 @@ import (
 	"golang.org/x/exp/slog"
 )
 
-var (
-	prefix = "test: "
-)
+var prefix = "test: "
 
 type plugin struct {
 	*tbot.Bot
@@ -17,7 +15,7 @@ type plugin struct {
 
 func (p *plugin) Init(b *tbot.Bot) {
 	p.Bot = b
-	slog.Debug(prefix + "plugin initialized")
+	slog.Debug(prefix + "Plugin initialized")
 }
 
 func (p *plugin) Register() error {

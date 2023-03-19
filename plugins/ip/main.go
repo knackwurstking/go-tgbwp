@@ -12,6 +12,8 @@ import (
 	"github.com/knackwurstking/go-tgbwp/pkg/tbot"
 )
 
+var prefix = "ip: "
+
 // Plugin struct struct will be load from the tgbwp plugin manager
 type plugin struct {
 	*tbot.Bot
@@ -21,22 +23,20 @@ type plugin struct {
 
 func (p *plugin) Init(b *tbot.Bot) {
 	p.Bot = b // NOTE: Always need to do this for all plugins
-	slog.Debug("ip: plugin initialized")
+	slog.Debug(prefix + "Plugin initialized")
 }
 
 // Load the plugin - register commands ...
 func (p *plugin) Register() error {
 	// register ip command handler...
 	p.Bot.RegisterCommand("ip", func(bot *gotgbot.Bot, ctx *ext.Context) error {
-		slog.Info("Register plugin: /ip " + strings.Join(ctx.Args()[1:], " "))
+		slog.Info(prefix + "Register plugin: /ip " + strings.Join(ctx.Args()[1:], " "))
 
 		// first check if id is in chat ids
-		if p.ID.Chat.GetName(ctx.EffectiveChat.Id) != "" {
-			if p.ID.User.GetUser(ctx.EffectiveUser.Id) != "" {
-				return fmt.Errorf("disallowed, invalid user id: %d", ctx.EffectiveUser.Id)
-			}
-
-			return fmt.Errorf("disallowed, invalid chat id (%d) for user %d",
+		chat := p.ID.Chat.GetName(ctx.EffectiveChat.Id)
+		user := p.ID.User.GetUser(ctx.EffectiveUser.Id)
+		if chat == "" && user == "" {
+			return fmt.Errorf("disallowed, chat=%d, user=%d",
 				ctx.EffectiveChat.Id, ctx.EffectiveUser.Id)
 		}
 
