@@ -24,9 +24,7 @@ func (p *plugin) Register() error {
 			ParseMode: "HTML",
 			ReplyMarkup: gotgbot.InlineKeyboardMarkup{
 				InlineKeyboard: [][]gotgbot.InlineKeyboardButton{{
-					{Text: "Press me", WebApp: &gotgbot.WebAppInfo{
-						Url: "https://rpi-server:50832/sections",
-					}},
+					{Text: "Press me", Url: "https://192.168.178.21:50832/sections"},
 				}},
 			},
 		})
