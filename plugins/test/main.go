@@ -5,13 +5,17 @@ import (
 	"golang.org/x/exp/slog"
 )
 
+var (
+	prefix = "test: "
+)
+
 type plugin struct {
 	*tbot.Bot
 }
 
 func (p *plugin) Init(b *tbot.Bot) {
 	p.Bot = b
-	slog.Debug("test-menu: plugin initialized")
+	slog.Debug(prefix + "plugin initialized")
 }
 
 func (p *plugin) Register() error {
