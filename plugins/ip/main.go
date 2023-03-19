@@ -31,7 +31,7 @@ func (p *plugin) Register() error {
 		slog.Info("Register plugin: /ip " + strings.Join(ctx.Args()[1:], " "))
 
 		// first check if id is in chat ids
-		if p.ID.Chat.GetName(ctx.EffectiveChat.Id) != "" {
+		if p.ID.Chat.GetName(ctx.EffectiveChat.Id) != "" || p.ID.User.GetUser(ctx.EffectiveUser.Id) != "" {
 			return fmt.Errorf("disallowed, invalid chat id! (%d) for user %d",
 				ctx.EffectiveChat.Id, ctx.EffectiveUser.Id)
 		}
@@ -55,7 +55,7 @@ func (p *plugin) Register() error {
 		return nil
 	})
 
-	p.Bot.AddChatCommand("ip", "get (rpi-)server ip")
+	p.Bot.AddGroupCommand("ip", "get (rpi-)server ip")
 
 	return nil
 }

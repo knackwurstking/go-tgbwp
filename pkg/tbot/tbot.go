@@ -1,7 +1,6 @@
 package tbot
 
 import (
-	"fmt"
 	"net/http"
 
 	"github.com/PaulSonOfLars/gotgbot/v2"
@@ -36,8 +35,6 @@ type Bot struct {
 	ID ID // ID contains user and chat ids ("~/.config/tgbwp/config.json")
 
 	Commands      []gotgbot.BotCommand
-	UserCommands  []gotgbot.BotCommand
-	ChatCommands  []gotgbot.BotCommand
 	GroupCommands []gotgbot.BotCommand
 }
 
@@ -77,7 +74,7 @@ func (bot *Bot) AddCommand(command, desc string) {
 }
 
 func (b *Bot) SetCommands() (ok bool, err error) {
-	return b.SetMyCommands(b.ChatCommands, &gotgbot.SetMyCommandsOpts{
+	return b.SetMyCommands(b.Commands, &gotgbot.SetMyCommandsOpts{
 		Scope: gotgbot.BotCommandScopeDefault{},
 	})
 }
@@ -93,56 +90,6 @@ func (b *Bot) SetGroupCommands() (ok bool, err error) {
 	return b.SetMyCommands(b.GroupCommands, &gotgbot.SetMyCommandsOpts{
 		Scope: gotgbot.BotCommandScopeAllGroupChats{},
 	})
-}
-
-func (bot *Bot) AddUserCommand(command, desc string) {
-	bot.UserCommands = append(bot.UserCommands, gotgbot.BotCommand{
-		Command:     command,
-		Description: desc,
-	})
-}
-
-func (b *Bot) SetUserCommands() (err error) {
-	for _, user := range b.ID.User {
-		var ok bool
-		ok, err = b.SetMyCommands(b.UserCommands, &gotgbot.SetMyCommandsOpts{
-			Scope: gotgbot.BotCommandScopeChatMember{
-				UserId: user,
-			},
-		})
-		if err != nil {
-			err = fmt.Errorf("Set user commands for \"%d\" failed: %s", user, err.Error())
-		} else if !ok {
-			err = fmt.Errorf("Set user commands for \"%d\" failed!", user)
-		}
-	}
-
-	return
-}
-
-func (bot *Bot) AddChatCommand(command, desc string) {
-	bot.ChatCommands = append(bot.ChatCommands, gotgbot.BotCommand{
-		Command:     command,
-		Description: desc,
-	})
-}
-
-func (b *Bot) SetChatCommands() (err error) {
-	for _, chat := range b.ID.Chat {
-		var ok bool
-		ok, err = b.SetMyCommands(b.ChatCommands, &gotgbot.SetMyCommandsOpts{
-			Scope: gotgbot.BotCommandScopeChatMember{
-				UserId: chat,
-			},
-		})
-		if err != nil {
-			err = fmt.Errorf("Set chat commands for \"%d\" failed: %s", chat, err.Error())
-		} else if !ok {
-			err = fmt.Errorf("Set chat commands for \"%d\" failed!", chat)
-		}
-	}
-
-	return
 }
 
 func (bot *Bot) Start() error {

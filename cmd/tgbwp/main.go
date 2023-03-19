@@ -148,7 +148,10 @@ func readConfigJSON() (Config, error) {
 	if err != nil {
 		f, err = os.Open(filepath.Join(home, ".config", ApplicationName, "config.json"))
 	}
-	err = json.NewDecoder(f).Decode(&c)
+
+	if err == nil {
+		err = json.NewDecoder(f).Decode(&c)
+	}
 
 	return c, err
 }
@@ -168,17 +171,5 @@ func setMyCommands(b *tbot.Bot) {
 		slog.Error("Set global group scoped commands failed!", "error", err)
 	} else if !ok {
 		slog.Warn("Set global group scoped commands failed!")
-	}
-
-	// Set chat scoped bot commands
-	err = b.SetUserCommands()
-	if err != nil {
-		slog.Warn(err.Error())
-	}
-
-	// Set user scoped bot commands
-	err = b.SetChatCommands()
-	if err != nil {
-		slog.Warn(err.Error())
 	}
 }
