@@ -1,43 +1,34 @@
 # tgbwp (telegram-bot-with-plugins)
 
-A in golang written telegram bot with plugins support
-(using the golang plugins package).
-I use this to get my (raspberry pi) server IP.
+A Golang Telegram bot with plugins support.
 
-## Install Info (NOTES)
+## Install Info
 
-- first create a bot with the **[BotFather](https://telegram.me/botfather)**
-  - telegram command: _`/newbot`_
-  - type in the bots _name_
-  - type in the bots _username_
-  - grep the api token from the message
-- now create a group and invite your bot into this group
-- run telegram command (**BotFather**): _`/setjoingroups`_ to Disable
+-   Create a bot with the [BotFather](https://telegram.me/botfather) command: _`/newbot`_, name, username, and grep the API token from the message.
+-   Invite the bot into a group.
+-   Run the [BotFather](https://telegram.me/botfather) command: _`/setjoingroups`_ to disable the bot from joining groups.
 
-Now we need to do some stuff so that the bot only answer the group members
+Now, the bot will only answer group members.
 
-- inside the telegram group type: _`/hello`_
-- then run `curl https://api.telegram.org/bot<token>/getUpdates | jq`
-- get and store the _**chat id**_ from the curl command
+-   Inside the group, type: _`/hello`_.
+-   Run `curl https://api.telegram.org/bot<token>/getUpdates | jq` to get and store the chat ID.
 
-- env: `export TGBWP_TOKEN=<token>`
-- enable debug: `export DEBUG=true`
+-   export TGBWP_TOKEN=<token>`Enable debug:`export debug. DEBUG=true`
 
-- build with: `go build -buildmode=plugin -o ~/.local/share/tgbwp/plugins/ip.so ./plugins/ip`
+Build with: `go` build -buildmode=plugin -o ~/.local/share/tgbwp/plugins/ip.so ./plugins/ip
 
 ## Configuration
 
-Example configuration, replace \<number\> with the current chat numbers,
-get it with `curl https://api.telegram.org/bot<token>/getUpdates | jq`
+Example configuration, replace \<number\> with the current chat numbers:
 
 ```json
 {
-  "id": {
-    "user": {
-      "knackwurstking": <number>
+  “id”: {
+    “user”: {
+      “knackwurstking”: <number>
     },
-    "chat": {
-      "alice": <number>
+    “chat”: {
+      “alice”: <number>
     }
   }
 }
@@ -45,4 +36,5 @@ get it with `curl https://api.telegram.org/bot<token>/getUpdates | jq`
 
 ## TODOs
 
-- [ ] Adding new plugins for (rpi) getting journalctl logs (as files)
+-   [ ] Add a new plugin for (rpi) to get journalctl logs as files.
+-   [ ] Add a new plugin for controlling lights (picow-led-server).
