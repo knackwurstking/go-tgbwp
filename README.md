@@ -33,8 +33,3 @@ Example configuration, replace \<number\> with the current chat numbers:
   }
 }
 ```
-
-## TODOs
-
--   [ ] Add a new plugin for (rpi) to get journalctl logs as files.
--   [ ] Add a new plugin for controlling lights (picow-led-server).
