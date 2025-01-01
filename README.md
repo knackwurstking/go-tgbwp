@@ -1,5 +1,8 @@
 # tgbwp (telegram-bot-with-plugins)
 
+> Replaced with:
+> https://github.com/knackwurstking/tgs
+
 A Golang Telegram bot with plugins support.
 
 ## Install Info
